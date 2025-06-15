@@ -14,6 +14,7 @@ Guia rápido e definitivo para deixar seus terminais com visual moderno, produti
 - `paradox`
 - `atomic`
 - `blue-owl`
+- `quick-term.omp`
 
 🔗 **Lista de temas e previews:**  
 https://ohmyposh.dev/docs/themes
@@ -223,6 +224,118 @@ sudo apt install -y fzf bat ripgrep htop ncdu
 | `ncdu`      | Análise de uso de disco no terminal            |
 
 ---
+
+# 🧠 Instalando e Configurando o ZSH no Linux
+
+## ✔️ Instalar ZSH
+
+```bash
+sudo apt update
+sudo apt install -y zsh
+```
+
+Verificar:
+
+```bash
+zsh --version
+```
+
+## ✔️ Executar ZSH sem alterar o shell padrão
+
+```bash
+zsh
+```
+
+Se aparecer o menu `zsh-newuser-install`, selecione:
+
+```plaintext
+(0) Exit, creating the file ~/.zshrc containing just a comment.
+```
+
+## ✔️ Instalar Oh My Zsh
+
+```bash
+sudo apt install -y curl
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+## ✔️ Ativar Oh My Posh no ZSH
+
+Editar `.zshrc`:
+
+```bash
+nano ~/.zshrc
+```
+
+Adicionar no final:
+
+```bash
+eval "$(oh-my-posh init zsh --config ~/.poshthemes/night-owl.omp.json)"
+```
+
+Aplicar:
+
+```bash
+source ~/.zshrc
+```
+
+## ✔️ Usar ZSH como shell padrão (opcional)
+
+```bash
+chsh -s $(which zsh)
+```
+
+Voltar para bash, se quiser:
+
+```bash
+chsh -s $(which bash)
+```
+
+## ✔️ Criar um perfil separado no GNOME Terminal (sem alterar o default)
+
+1. **Menu → Preferências → Adicionar novo perfil**
+2. Nome: **ZSH Power**
+3. Aba **Comando → Executar comando personalizado:**
+
+```bash
+zsh
+```
+
+4. Aba **Texto → Fonte personalizada:**  
+Selecione sua Nerd Font.
+
+5. Salvar. Agora você escolhe na aba do terminal se quer Bash (default) ou ZSH Power.
+
+---
+
+## 🔧 Ferramentas adicionais para turbinar o terminal
+
+```bash
+sudo apt update
+sudo apt install -y fzf bat ripgrep htop ncdu
+```
+
+Criar alias para `bat`:
+
+```bash
+echo "alias bat='batcat'" >> ~/.bashrc
+source ~/.bashrc
+```
+
+---
+
+## 📑 Tabela de Ferramentas
+
+| Ferramenta | O que faz                                      |
+|-------------|------------------------------------------------|
+| `fzf`       | Busca fuzzy pra tudo (arquivos, comandos, etc) |
+| `bat`       | Alternativa ao `cat` com sintaxe colorida      |
+| `ripgrep (rg)` | Busca texto extremamente rápida             |
+| `htop`      | Monitor de processos interativo                |
+| `ncdu`      | Análise de uso de disco no terminal            |
+
+---
+
 
 ## 🏁 **Missão concluída.**  
 Terminal de guerreiro, visual de CEO, produtividade de hacker. 😎🚀
