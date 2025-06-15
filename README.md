@@ -175,5 +175,54 @@ sudo apt install -y fzf bat ripgrep htop ncdu
 
 ---
 
+# 🐧 Instalando no Ubuntu em máquina física ou virtual
+
+### 🚩 Importante: Instalar a fonte Nerd no sistema (não é como no Windows Terminal)
+
+### ✔️ Baixar e instalar a fonte (exemplo com 3270 Nerd Font):
+
+```bash
+sudo mkdir -p /usr/share/fonts/nerd-fonts
+cd /usr/share/fonts/nerd-fonts
+sudo wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/3270.zip
+sudo unzip 3270.zip
+sudo rm 3270.zip
+sudo fc-cache -fv
+```
+
+### ✔️ Feche o terminal ou faça logout/login no sistema.
+
+### ✔️ Configure a fonte no terminal:
+
+- **Menu → Preferências → [Seu perfil] → Texto → Fonte personalizada**  
+→ Escolha **3270 Nerd Font Mono** (ou Complete, Regular, etc.).
+
+> 🔥 Agora todos os caracteres especiais (como branch, status, separadores e ícones) vão aparecer corretamente no terminal.
+
+---
+
+## 🔧 Ferramentas adicionais para turbinar o terminal (opcional, mas recomendado)
+
+### 🚀 Instalação:
+
+```bash
+sudo apt update
+sudo apt install -y fzf bat ripgrep htop ncdu
+```
+
+---
+
+## 📑 Tabela de Ferramentas
+
+| Ferramenta | O que faz                                      |
+|-------------|------------------------------------------------|
+| `fzf`       | Busca fuzzy pra tudo (arquivos, comandos, etc) |
+| `bat`       | Alternativa ao `cat` com sintaxe colorida      |
+| `ripgrep (rg)` | Busca texto extremamente rápida             |
+| `htop`      | Monitor de processos interativo                |
+| `ncdu`      | Análise de uso de disco no terminal            |
+
+---
+
 ## 🏁 **Missão concluída.**  
 Terminal de guerreiro, visual de CEO, produtividade de hacker. 😎🚀
