@@ -336,6 +336,29 @@ source ~/.bashrc
 
 ---
 
+## 🔧 Instalando o Tmux no Linux
+
+O **Tmux** é um multiplexador de terminais. Permite ter várias sessões, splits e painéis dentro de uma única janela de terminal.
+
+### ✔️ Instalação:
+
+```bash
+sudo apt update
+sudo apt install -y tmux
+```
+
+### ✔️ Comandos básicos do Tmux:
+
+| Atalho                         | O que faz                               |
+|---------------------------------|-----------------------------------------|
+| `tmux`                         | Inicia uma nova sessão                  |
+| `Ctrl + b`, depois `%`          | Split vertical                          |
+| `Ctrl + b`, depois `"`          | Split horizontal                        |
+| `Ctrl + b`, depois seta         | Navegar entre painéis                   |
+| `Ctrl + b`, depois `d`          | Detach (sair da sessão mas mantê-la ativa) |
+| `tmux attach`                   | Reentrar na sessão atual                |
+
+✔️ Ideal para quem trabalha com múltiplas janelas SSH, projetos, logs, etc.
 
 ## 🏁 **Missão concluída.**  
 Terminal de guerreiro, visual de CEO, produtividade de hacker. 😎🚀
