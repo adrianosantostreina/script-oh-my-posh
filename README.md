@@ -360,5 +360,42 @@ sudo apt install -y tmux
 
 ✔️ Ideal para quem trabalha com múltiplas janelas SSH, projetos, logs, etc.
 
+## 🚀 Instalando o Fastfetch no Linux
+
+O **Fastfetch** é um substituto moderno e mais rápido do Neofetch. Exibe informações do sistema no terminal de forma bonita e eficiente.
+
+### ✔️ Instalação:
+
+Instalar dependências necessárias:
+
+```bash
+sudo apt update
+sudo apt install -y build-essential cmake pkg-config git
+```
+
+Baixar, compilar e instalar:
+
+```bash
+git clone https://github.com/fastfetch-cli/fastfetch.git
+cd fastfetch
+mkdir -p build && cd build
+cmake ..
+make -j$(nproc)
+sudo make install
+```
+
+Instalar o cmake se não estiver instalado
+```bash
+sudo apt install cmake
+```
+
+### ✔️ Usar:
+
+```bash
+fastfetch
+```
+
+✔️ Mostra informações do sistema de forma rápida, limpa e altamente configurável.
+
 ## 🏁 **Missão concluída.**  
 Terminal de guerreiro, visual de CEO, produtividade de hacker. 😎🚀
