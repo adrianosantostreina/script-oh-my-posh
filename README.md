@@ -397,5 +397,20 @@ fastfetch
 
 ✔️ Mostra informações do sistema de forma rápida, limpa e altamente configurável.
 
+
+## 🖥️ Git Bash
+![Git Bash](https://prnt.sc/jbIRU6IVRXfZ)
+
+## 🐧 Ubuntu WSL
+![Ubuntu WSL](https://prnt.sc/VS1oAPmx1UKN)
+
+## 💻 ZSH Turbo
+![ZSH](https://prnt.sc/X_mhMrluWsK3)
+
+## 💻 PowerShell
+![PowerShell](https://prnt.sc/H8IB_fy6C0SA)
+
+
+
 ## 🏁 **Missão concluída.**  
 Terminal de guerreiro, visual de CEO, produtividade de hacker. 😎🚀
