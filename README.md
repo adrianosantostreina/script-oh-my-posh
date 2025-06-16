@@ -399,16 +399,16 @@ fastfetch
 
 
 ## 🖥️ Git Bash
-![Git Bash](https://prnt.sc/jbIRU6IVRXfZ)
+![Git Bash](https://github.com/adrianosantostreina/script-oh-my-posh/blob/master/img/GitBash.png)
 
 ## 🐧 Ubuntu WSL
-![Ubuntu WSL](https://prnt.sc/VS1oAPmx1UKN)
+![Ubuntu WSL](https://github.com/adrianosantostreina/script-oh-my-posh/blob/master/img/Ubuntu.png)
 
 ## 💻 ZSH Turbo
-![ZSH](https://prnt.sc/X_mhMrluWsK3)
+![ZSH](https://github.com/adrianosantostreina/script-oh-my-posh/blob/master/img/ZSH.png)
 
 ## 💻 PowerShell
-![PowerShell](https://prnt.sc/H8IB_fy6C0SA)
+![PowerShell](https://github.com/adrianosantostreina/script-oh-my-posh/blob/master/img/PowerShell.png)
 
 
 
