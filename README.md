@@ -1,5 +1,5 @@
 # Scripts-oh-my-posh
-# 🚀 Scripts e Configurações para Personalizar Git Bash, PowerShell e WSL no Windows Terminal
+# 🚀 Scripts e Configurações para Personalizar Git Bash, PowerShell, WSL e macOS
 
 Guia rápido e definitivo para deixar seus terminais com visual moderno, produtivo e estiloso usando **Oh My Posh**.
 
@@ -29,8 +29,8 @@ Fonte utilizada no exemplo: **3270 Nerd Font**
 🔗 Download das fontes: https://www.nerdfonts.com/font-downloads
 
 **Configuração no Windows Terminal:**
-- **Configurações → Padrões → Aparência → Fonte:**  
-Escolha a fonte **3270 Nerd Font** e salve.
+- **Configurações → Padrões → Aparência → Fonte**
+- Escolha a fonte **3270 Nerd Font** e salve.
 
 ---
 
@@ -67,68 +67,14 @@ oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-E
 Get-ChildItem "$env:POSH_THEMES_PATH" -Filter *.omp.json
 ```
 
-### 🔄 Testar tema rapidamente (sem alterar o perfil)
-
-```powershell
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\jandedobbeleer.omp.json" | Invoke-Expression
-```
-
 ---
 
 # ⚡ Instalação no Git Bash (Windows Terminal)
 
-### 🚀 Instalação do Oh My Posh (mesmo do PowerShell)
-
-```bash
-winget install JanDeDobbeleer.OhMyPosh
-```
-
-### 🔍 Localizar o executável
-Use o software **Everything** para encontrar rapidamente:  
-`oh-my-posh.exe`
-
-### 📜 Editar o arquivo `.bashrc`
-
-```bash
-nano ~/.bashrc
-```
-
-### ✍️ Adicionar no final (exemplo com tema personalizado)
-
-```bash
-eval "$(/c/Users/adrianosantosnote/AppData/Local/Programs/oh-my-posh/bin/oh-my-posh.exe init bash --config ~/.myposh.omp.json)"
-```
-
-> 🔥 **Atenção:**  
-Ajuste corretamente:
-- Caminho do executável `oh-my-posh.exe`
-- Caminho do tema `.omp.json`
-
-### 🔄 Aplicar as alterações
-
-```bash
-source ~/.bashrc
-```
-
----
-
-# 🐧 Instalação no WSL (Ubuntu, Debian, Kali, etc.)
-
 ### 🚀 Instalação do Oh My Posh
 
 ```bash
-sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
-sudo chmod +x /usr/local/bin/oh-my-posh
-```
-
-### 🎨 Baixar e configurar os temas
-
-```bash
-mkdir -p ~/.poshthemes
-wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O ~/.poshthemes/themes.zip
-unzip ~/.poshthemes/themes.zip -d ~/.poshthemes
-chmod u+rw ~/.poshthemes/*.omp.json
-rm ~/.poshthemes/themes.zip
+winget install JanDeDobbeleer.OhMyPosh
 ```
 
 ### 📜 Editar o arquivo `.bashrc`
@@ -140,12 +86,10 @@ nano ~/.bashrc
 ### ✍️ Adicionar no final
 
 ```bash
-eval "$(oh-my-posh init bash --config ~/.poshthemes/paradox.omp.json)"
+eval "$(/c/Users/SEU_USUARIO/AppData/Local/Programs/oh-my-posh/bin/oh-my-posh.exe init bash --config ~/.myposh.omp.json)"
 ```
 
-> ✔️ Troque `paradox.omp.json` pelo tema desejado.
-
-### 🔄 Aplicar imediatamente
+> 🔥 Ajuste corretamente o caminho do executável e do tema.
 
 ```bash
 source ~/.bashrc
@@ -153,124 +97,110 @@ source ~/.bashrc
 
 ---
 
-## 🔧 Ferramentas adicionais para turbinar o terminal (opcional, mas recomendado)
+# 🐧 Instalação no WSL (Ubuntu, Debian, Kali, etc.)
 
-### 🚀 Instalação:
+### 🚀 Instalar Oh My Posh
 
 ```bash
-sudo apt update
-sudo apt install -y fzf bat ripgrep htop ncdu
+sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+sudo chmod +x /usr/local/bin/oh-my-posh
+```
+
+### 🎨 Baixar temas
+
+```bash
+mkdir -p ~/.poshthemes
+wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O ~/.poshthemes/themes.zip
+unzip ~/.poshthemes/themes.zip -d ~/.poshthemes
+chmod u+rw ~/.poshthemes/*.omp.json
+rm ~/.poshthemes/themes.zip
+```
+
+### ✍️ Editar `.bashrc`
+
+```bash
+nano ~/.bashrc
+```
+
+Adicionar:
+
+```bash
+eval "$(oh-my-posh init bash --config ~/.poshthemes/paradox.omp.json)"
+```
+
+```bash
+source ~/.bashrc
 ```
 
 ---
 
-## 📑 Tabela de Ferramentas
+# 🍎 Instalação no macOS (Terminal ZSH)
 
-| Ferramenta | O que faz                                      |
-|-------------|------------------------------------------------|
-| `fzf`       | Busca fuzzy pra tudo (arquivos, comandos, etc) |
-| `bat`       | Alternativa ao `cat` com sintaxe colorida      |
-| `ripgrep (rg)` | Busca texto extremamente rápida             |
-| `htop`      | Monitor de processos interativo                |
-| `ncdu`      | Análise de uso de disco no terminal            |
+O macOS já utiliza **ZSH como shell padrão**, então a configuração é direta.
 
 ---
 
-# 🐧 Instalando no Ubuntu em máquina física ou virtual
-
-### 🚩 Importante: Instalar a fonte Nerd no sistema (não é como no Windows Terminal)
-
-### ✔️ Baixar e instalar a fonte (exemplo com 3270 Nerd Font):
+## 🍺 1️⃣ Instalar Homebrew
 
 ```bash
-sudo mkdir -p /usr/share/fonts/nerd-fonts
-cd /usr/share/fonts/nerd-fonts
-sudo wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/3270.zip
-sudo unzip 3270.zip
-sudo rm 3270.zip
-sudo fc-cache -fv
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-### ✔️ Feche o terminal ou faça logout/login no sistema.
-
-### ✔️ Configure a fonte no terminal:
-
-- **Menu → Preferências → [Seu perfil] → Texto → Fonte personalizada**  
-→ Escolha **3270 Nerd Font Mono** (ou Complete, Regular, etc.).
-
-> 🔥 Agora todos os caracteres especiais (como branch, status, separadores e ícones) vão aparecer corretamente no terminal.
-
----
-
-## 🔧 Ferramentas adicionais para turbinar o terminal (opcional, mas recomendado)
-
-### 🚀 Instalação:
+Adicionar ao PATH (Apple Silicon):
 
 ```bash
-sudo apt update
-sudo apt install -y fzf bat ripgrep htop ncdu
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+```
+
+Testar:
+
+```bash
+brew --version
 ```
 
 ---
 
-## 📑 Tabela de Ferramentas
+## 🎨 2️⃣ Instalar Nerd Font
 
-| Ferramenta | O que faz                                      |
-|-------------|------------------------------------------------|
-| `fzf`       | Busca fuzzy pra tudo (arquivos, comandos, etc) |
-| `bat`       | Alternativa ao `cat` com sintaxe colorida      |
-| `ripgrep (rg)` | Busca texto extremamente rápida             |
-| `htop`      | Monitor de processos interativo                |
-| `ncdu`      | Análise de uso de disco no terminal            |
+```bash
+brew install --cask font-3270-nerd-font
+```
+
+Aplicar no Terminal:
+
+- Terminal → Settings (⌘ ,)
+- Profiles → Text → Font
+- Escolha **3270 Nerd Font**
 
 ---
 
-# 🧠 Instalando e Configurando o ZSH no Linux
-
-## ✔️ Instalar ZSH
+## 🚀 3️⃣ Instalar Oh My Posh
 
 ```bash
-sudo apt update
-sudo apt install -y zsh
+brew install jandedobbeleer/oh-my-posh/oh-my-posh
 ```
 
-Verificar:
+Testar:
 
 ```bash
-zsh --version
+oh-my-posh --version
 ```
 
-## ✔️ Executar ZSH sem alterar o shell padrão
+---
 
-```bash
-zsh
-```
+## ⚡ 4️⃣ Ativar no ZSH
 
-Se aparecer o menu `zsh-newuser-install`, selecione:
-
-```plaintext
-(0) Exit, creating the file ~/.zshrc containing just a comment.
-```
-
-## ✔️ Instalar Oh My Zsh
-
-```bash
-sudo apt install -y curl
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
-
-## ✔️ Ativar Oh My Posh no ZSH
-
-Editar `.zshrc`:
+Editar:
 
 ```bash
 nano ~/.zshrc
 ```
 
-Adicionar no final:
+Adicionar:
 
 ```bash
-eval "$(oh-my-posh init zsh --config ~/.poshthemes/night-owl.omp.json)"
+eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/paradox.omp.json)"
 ```
 
 Aplicar:
@@ -279,103 +209,61 @@ Aplicar:
 source ~/.zshrc
 ```
 
-## ✔️ Usar ZSH como shell padrão (opcional)
+---
+
+# 🧠 Instalando e Configurando o ZSH no Linux
 
 ```bash
-chsh -s $(which zsh)
+sudo apt update
+sudo apt install -y zsh
 ```
 
-Voltar para bash, se quiser:
-
-```bash
-chsh -s $(which bash)
-```
-
-## ✔️ Criar um perfil separado no GNOME Terminal (sem alterar o default)
-
-1. **Menu → Preferências → Adicionar novo perfil**
-2. Nome: **ZSH Power**
-3. Aba **Comando → Executar comando personalizado:**
+Executar:
 
 ```bash
 zsh
 ```
 
-4. Aba **Texto → Fonte personalizada:**  
-Selecione sua Nerd Font.
+Se aparecer o menu inicial:
 
-5. Salvar. Agora você escolhe na aba do terminal se quer Bash (default) ou ZSH Power.
+```
+(0) Exit, creating the file ~/.zshrc containing just a comment.
+```
+
+Instalar Oh My Zsh:
+
+```bash
+sudo apt install -y curl
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+Adicionar Oh My Posh no `.zshrc`:
+
+```bash
+eval "$(oh-my-posh init zsh --config ~/.poshthemes/night-owl.omp.json)"
+```
 
 ---
 
-## 🔧 Ferramentas adicionais para turbinar o terminal
+# 🔧 Ferramentas adicionais (Linux / macOS)
 
 ```bash
 sudo apt update
-sudo apt install -y fzf bat ripgrep htop ncdu
+sudo apt install -y fzf bat ripgrep htop ncdu tmux
 ```
 
-Criar alias para `bat`:
+No macOS:
 
 ```bash
-echo "alias bat='batcat'" >> ~/.bashrc
-source ~/.bashrc
+brew install fzf bat ripgrep htop ncdu tmux
 ```
 
 ---
 
-## 📑 Tabela de Ferramentas
-
-| Ferramenta | O que faz                                      |
-|-------------|------------------------------------------------|
-| `fzf`       | Busca fuzzy pra tudo (arquivos, comandos, etc) |
-| `bat`       | Alternativa ao `cat` com sintaxe colorida      |
-| `ripgrep (rg)` | Busca texto extremamente rápida             |
-| `htop`      | Monitor de processos interativo                |
-| `ncdu`      | Análise de uso de disco no terminal            |
-
----
-
-## 🔧 Instalando o Tmux no Linux
-
-O **Tmux** é um multiplexador de terminais. Permite ter várias sessões, splits e painéis dentro de uma única janela de terminal.
-
-### ✔️ Instalação:
+## 🚀 Instalando o Fastfetch (Linux)
 
 ```bash
-sudo apt update
-sudo apt install -y tmux
-```
-
-### ✔️ Comandos básicos do Tmux:
-
-| Atalho                         | O que faz                               |
-|---------------------------------|-----------------------------------------|
-| `tmux`                         | Inicia uma nova sessão                  |
-| `Ctrl + b`, depois `%`          | Split vertical                          |
-| `Ctrl + b`, depois `"`          | Split horizontal                        |
-| `Ctrl + b`, depois seta         | Navegar entre painéis                   |
-| `Ctrl + b`, depois `d`          | Detach (sair da sessão mas mantê-la ativa) |
-| `tmux attach`                   | Reentrar na sessão atual                |
-
-✔️ Ideal para quem trabalha com múltiplas janelas SSH, projetos, logs, etc.
-
-## 🚀 Instalando o Fastfetch no Linux
-
-O **Fastfetch** é um substituto moderno e mais rápido do Neofetch. Exibe informações do sistema no terminal de forma bonita e eficiente.
-
-### ✔️ Instalação:
-
-Instalar dependências necessárias:
-
-```bash
-sudo apt update
 sudo apt install -y build-essential cmake pkg-config git
-```
-
-Baixar, compilar e instalar:
-
-```bash
 git clone https://github.com/fastfetch-cli/fastfetch.git
 cd fastfetch
 mkdir -p build && cd build
@@ -384,19 +272,13 @@ make -j$(nproc)
 sudo make install
 ```
 
-Instalar o cmake se não estiver instalado
-```bash
-sudo apt install cmake
-```
-
-### ✔️ Usar:
+Usar:
 
 ```bash
 fastfetch
 ```
 
-✔️ Mostra informações do sistema de forma rápida, limpa e altamente configurável.
-
+---
 
 ## 🖥️ Git Bash
 ![Git Bash](https://github.com/adrianosantostreina/script-oh-my-posh/blob/master/img/GitBash.png)
@@ -410,7 +292,8 @@ fastfetch
 ## 💻 PowerShell
 ![PowerShell](https://github.com/adrianosantostreina/script-oh-my-posh/blob/master/img/PowerShell.png)
 
+---
 
+## 🏁 Missão concluída.
 
-## 🏁 **Missão concluída.**  
 Terminal de guerreiro, visual de CEO, produtividade de hacker. 😎🚀
