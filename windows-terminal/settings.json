@@ -1,0 +1,325 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "actions": 
+    [
+        {
+            "command": 
+            {
+                "action": "copy",
+                "singleLine": false
+            },
+            "id": "User.copy.644BA8F2"
+        },
+        {
+            "command": "paste",
+            "id": "User.paste"
+        },
+        {
+            "command": 
+            {
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
+            },
+            "id": "User.splitPane.A6751878"
+        },
+        {
+            "command": "find",
+            "id": "User.find"
+        }
+    ],
+    "copyFormatting": "none",
+    "copyOnSelect": true,
+    "defaultProfile": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
+    "firstWindowPreference": "persistedWindowLayout",
+    "focusFollowMouse": true,
+    "initialPosition": "10,10",
+    "initialRows": 40,
+    "keybindings": 
+    [
+        {
+            "id": "User.copy.644BA8F2",
+            "keys": "ctrl+c"
+        },
+        {
+            "id": "User.find",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "id": "User.paste",
+            "keys": "ctrl+v"
+        },
+        {
+            "id": "User.splitPane.A6751878",
+            "keys": "alt+shift+d"
+        }
+    ],
+    "language": "pt-BR",
+    "newTabMenu":
+    [
+        {
+            "profile": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
+            "type": "profile"
+        },
+        {
+            "profile": "{51855cb2-8cce-5362-8f54-464b92b32386}",
+            "type": "profile"
+        },
+        {
+            "profile": "{8727b1be-e6fa-5826-8d0b-7aea1cb5e604}",
+            "type": "profile"
+        },
+        {
+            "profile": "{5feb5def-32aa-45f3-8200-34096121fd5a}",
+            "type": "profile"
+        },
+        {
+            "profile": "{8b62a809-a6a0-533d-b583-289c0fa03f93}",
+            "type": "profile"
+        },
+        {
+            "type": "separator"
+        },
+        {
+            "profile": "{6e27e5e4-73a2-4e8f-8a88-ddc9c8f43bac}",
+            "type": "profile"
+        },
+        {
+            "type": "separator"
+        },
+        {
+            "profile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+            "type": "profile"
+        },
+        {
+            "profile": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+            "type": "profile"
+        },
+        {
+            "type": "remainingProfiles"
+        }
+    ],
+    "profiles": 
+    {
+        "defaults": 
+        {
+            "font": 
+            {
+                "face": "3270 Nerd Font Mono",
+                "size": 16
+            },
+            "opacity": 93,
+            "useAcrylic": false
+        },
+        "list": 
+        [
+            {
+                "colorScheme": "PowerShell",
+                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "hidden": false,
+                "name": "Windows PowerShell",
+                "opacity": 93
+            },
+            {
+                "colorScheme": "CMD",
+                "commandline": "%SystemRoot%\\System32\\cmd.exe /k \"\"C:\\Program Files\\Git\\bin\\bash.exe\" \"D:\\6. Meus Projetos Pessoais\\script-oh-my-posh\\scripts\\info.sh\" 2>nul\"",
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "hidden": false,
+                "name": "Prompt de comando",
+                "opacity": 93
+            },
+            {
+                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+                "hidden": false,
+                "name": "Azure Cloud Shell",
+                "source": "Windows.Terminal.Azure"
+            },
+            {
+                "colorScheme": "Ubuntu 22",
+                "guid": "{51855cb2-8cce-5362-8f54-464b92b32386}",
+                "hidden": false,
+                "icon": "ms-appdata:///local/icons/ubuntu.png",
+                "name": "Ubuntu 22",
+                "opacity": 93,
+                "source": "CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc"
+            },
+            {
+                "guid": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
+                "hidden": false,
+                "name": "Git Bash",
+                "opacity": 93,
+                "source": "Git"
+            },
+            {
+                "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
+                "hidden": false,
+                "name": "Debian",
+                "source": "Windows.Terminal.Wsl"
+            },
+            {
+                "colorScheme": "Ubuntu 22",
+                "commandline": "ubuntu.exe run zsh",
+                "cursorShape": "filledBox",
+                "guid": "{5feb5def-32aa-45f3-8200-34096121fd5a}",
+                "hidden": false,
+                "icon": "ms-appdata:///local/icons/ubuntu.png",
+                "name": "Ubuntu ZSH Quick Term",
+                "opacity": 93,
+                "tabTitle": "Ubuntu"
+            },
+            {
+                "colorScheme": "Ubuntu 24",
+                "guid": "{8727b1be-e6fa-5826-8d0b-7aea1cb5e604}",
+                "hidden": false,
+                "icon": "ms-appdata:///local/icons/ubuntu-24.04.png",
+                "name": "Ubuntu-24.04",
+                "opacity": 93,
+                "source": "Microsoft.WSL"
+            },
+            {
+                "guid": "{34d7644e-4929-54b9-b358-4de28898590b}",
+                "hidden": false,
+                "name": "Debian",
+                "source": "Microsoft.WSL"
+            },
+            {
+                "guid": "{8b62a809-a6a0-533d-b583-289c0fa03f93}",
+                "hidden": false,
+                "name": "Hermes-Ensaio",
+                "source": "Microsoft.WSL"
+            },
+            {
+                "colorScheme": "VPS",
+                "commandline": "ssh vps",
+                "guid": "{6e27e5e4-73a2-4e8f-8a88-ddc9c8f43bac}",
+                "hidden": false,
+                "icon": "🖥️",
+                "name": "VPS Hostinger",
+                "suppressApplicationTitle": true,
+                "tabTitle": "VPS"
+            }
+        ]
+    },
+    "schemes": 
+    [
+        {
+            "background": "#2A0A20",
+            "black": "#2A0A20",
+            "blue": "#82AAFF",
+            "brightBlack": "#575656",
+            "brightBlue": "#82AAFF",
+            "brightCyan": "#7FDBCA",
+            "brightGreen": "#22DA6E",
+            "brightPurple": "#C792EA",
+            "brightRed": "#EF5350",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#FFEB95",
+            "cursorColor": "#F78FC4",
+            "cyan": "#21C7A8",
+            "foreground": "#D6DEEB",
+            "green": "#22DA6E",
+            "name": "Ubuntu 22",
+            "purple": "#C792EA",
+            "red": "#EF5350",
+            "selectionBackground": "#512043",
+            "white": "#FFFFFF",
+            "yellow": "#ADDB67"
+        },
+        {
+            "background": "#011627",
+            "black": "#011627",
+            "blue": "#82AAFF",
+            "brightBlack": "#575656",
+            "brightBlue": "#82AAFF",
+            "brightCyan": "#7FDBCA",
+            "brightGreen": "#22DA6E",
+            "brightPurple": "#C792EA",
+            "brightRed": "#EF5350",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#FFEB95",
+            "cursorColor": "#80A4C2",
+            "cyan": "#21C7A8",
+            "foreground": "#D6DEEB",
+            "green": "#22DA6E",
+            "name": "Ubuntu 24",
+            "purple": "#C792EA",
+            "red": "#EF5350",
+            "selectionBackground": "#1D3B53",
+            "white": "#FFFFFF",
+            "yellow": "#ADDB67"
+        },
+        {
+            "background": "#153369",
+            "black": "#153369",
+            "blue": "#82AAFF",
+            "brightBlack": "#575656",
+            "brightBlue": "#82AAFF",
+            "brightCyan": "#7FDBCA",
+            "brightGreen": "#22DA6E",
+            "brightPurple": "#C792EA",
+            "brightRed": "#EF5350",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#FFEB95",
+            "cursorColor": "#82AAFF",
+            "cyan": "#21C7A8",
+            "foreground": "#D6DEEB",
+            "green": "#22DA6E",
+            "name": "PowerShell",
+            "purple": "#C792EA",
+            "red": "#EF5350",
+            "selectionBackground": "#2B5190",
+            "white": "#FFFFFF",
+            "yellow": "#ADDB67"
+        },
+        {
+            "background": "#0C0C0C",
+            "black": "#0C0C0C",
+            "blue": "#82AAFF",
+            "brightBlack": "#575656",
+            "brightBlue": "#82AAFF",
+            "brightCyan": "#7FDBCA",
+            "brightGreen": "#22DA6E",
+            "brightPurple": "#C792EA",
+            "brightRed": "#EF5350",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#FFEB95",
+            "cursorColor": "#F2F2F2",
+            "cyan": "#21C7A8",
+            "foreground": "#D6DEEB",
+            "green": "#22DA6E",
+            "name": "CMD",
+            "purple": "#C792EA",
+            "red": "#EF5350",
+            "selectionBackground": "#3A3A3A",
+            "white": "#FFFFFF",
+            "yellow": "#ADDB67"
+        },
+        {
+            "background": "#2E0B0B",
+            "black": "#2E0B0B",
+            "blue": "#82AAFF",
+            "brightBlack": "#575656",
+            "brightBlue": "#82AAFF",
+            "brightCyan": "#7FDBCA",
+            "brightGreen": "#22DA6E",
+            "brightPurple": "#C792EA",
+            "brightRed": "#EF5350",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#FFEB95",
+            "cursorColor": "#FF8A80",
+            "cyan": "#21C7A8",
+            "foreground": "#D6DEEB",
+            "green": "#22DA6E",
+            "name": "VPS",
+            "purple": "#C792EA",
+            "red": "#EF5350",
+            "selectionBackground": "#5A1F1F",
+            "white": "#FFFFFF",
+            "yellow": "#ADDB67"
+        }
+    ],
+    "themes": [],
+    "useAcrylicInTabRow": true
+}

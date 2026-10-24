@@ -187,6 +187,54 @@ CMD: o CMD não tem profile. Para o banner aparecer só no perfil do Windows Ter
 
 ---
 
+## 🪟 Windows Terminal (cores, menu e ícones)
+
+Backup da configuração em [`windows-terminal/settings.json`](windows-terminal/settings.json):
+
+| Perfil | Fundo | Observação |
+|--------|-------|------------|
+| Ubuntu 22 e Ubuntu ZSH Quick Term | rosa-escuro `#2A0A20` | mesma distro, mesma cor |
+| Ubuntu-24.04 | azul-noite `#011627` | |
+| Windows PowerShell | azul `#153369` | |
+| Prompt de comando (CMD) | carvão `#0C0C0C` | roda o banner `info.sh` ao abrir |
+| VPS Hostinger | vermelho-escuro `#2E0B0B` | `ssh vps`; vermelho para lembrar que é produção |
+
+- Opacidade **93** em todos os perfis, fonte **3270 Nerd Font Mono** 16.
+- Menu da seta para baixo: Git Bash, Ubuntu 22, Ubuntu-24.04, Ubuntu ZSH, Hermes-Ensaio, separador, **VPS Hostinger**, separador, PowerShell, CMD e o restante.
+- Paleta Night Owl em todos os esquemas (`schemes` no arquivo).
+
+**Aplicar** (faça backup do atual antes):
+
+```powershell
+$ls = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState"
+Copy-Item "$ls\settings.json" "$ls\settings.json.bak" -Force
+Copy-Item .\windows-terminal\settings.json "$ls\settings.json" -Force
+```
+
+Ajuste no arquivo os caminhos do `info.sh` (perfil CMD) para onde você clonou o repositório e confira os `guid` dos perfis do WSL, que mudam de máquina para máquina.
+
+**Ícones do Ubuntu** (o Windows Terminal só lê arquivos dentro da pasta dele; copiados dos pacotes instalados):
+
+```powershell
+$ic = "$ls\icons"; New-Item -ItemType Directory -Force $ic | Out-Null
+Copy-Item "$((Get-AppxPackage -Name CanonicalGroupLimited.Ubuntu).InstallLocation)\Assets\Square44x44Logo.targetsize-256.png" "$ic\ubuntu.png"
+Copy-Item "$((Get-AppxPackage -Name CanonicalGroupLimited.Ubuntu24.04LTS).InstallLocation)\Assets\Square44x44Logo.targetsize-256.png" "$ic\ubuntu-24.04.png"
+```
+
+**Atalho para a VPS** (`ssh vps`): crie `~/.ssh/config` com o seu servidor (o arquivo real não vai para o repositório):
+
+```
+Host vps
+    HostName SEU_IP
+    User root
+    IdentityFile ~/.ssh/SUA_CHAVE_SEM_PASSPHRASE
+    IdentitiesOnly yes
+    ServerAliveInterval 30
+    ServerAliveCountMax 4
+```
+
+---
+
 ## 🔤 Instalação Geral — Fontes Nerd
 
 Para todos os terminais é necessário instalar uma **Nerd Font**.
