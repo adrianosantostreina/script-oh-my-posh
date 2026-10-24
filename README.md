@@ -237,7 +237,7 @@ Host vps
     ServerAliveCountMax 4
 ```
 
-**Painel lateral para o Git Bash** (`scripts/painel.sh`): o Windows Terminal não tem barra de status nem painel fixo, então a ação **Git Bash + Painel** abre uma aba do Git Bash com um painel estreito à direita (18% da largura) que se atualiza sozinho a cada ~3 s: discos (⚠ acima de 90%), RAM, CPU, GPU NVIDIA, rede e os 5 processos que mais usam memória.
+**Painel lateral para o Git Bash** (`scripts/painel.sh`): o Windows Terminal não tem barra de status nem painel fixo, então a ação **Git Bash + Painel** abre uma aba do Git Bash com um painel estreito à direita (15% da largura) que se atualiza sozinho a cada ~3 s: discos (⚠ acima de 90%), RAM, CPU, GPU NVIDIA, rede e os 5 processos que mais usam memória.
 
 ```
 Painel · Windows   01:57:22
@@ -256,8 +256,41 @@ Mais memória
 
 - **Abrir:** `Ctrl+Alt+G`, ou menu da seta para baixo → "Git Bash + Painel". Um Git Bash normal continua abrindo sem painel.
 - **Como é feito** (já está no `windows-terminal/settings.json`): um perfil escondido "Painel Git Bash" que roda o `painel.sh`, uma ação `User.gitBashComPainel` (`multipleActions`: `newTab` → `splitPane` à direita com `size` 0.3 → `moveFocus` à esquerda), o atalho e a entrada no menu.
-- **Largura do painel:** mude o `size` da ação (0.18 = 18%). O desenho usa 34 colunas; em janelas pequenas aumente o valor para o texto não ser cortado. **Atualização:** mude `JANELA` no `painel.sh`.
+- **Largura do painel:** mude o `size` da ação (0.15 = 15%). O desenho usa 34 colunas; em janelas pequenas aumente o valor para o texto não ser cortado. **Atualização:** mude `JANELA` no `painel.sh`.
 - Testar sem abrir o Windows Terminal: `scripts/painel.sh -1` (desenha uma vez e sai).
+
+---
+
+## 🧱 tmux com barra de status (Ubuntu/WSL e VPS)
+
+O Windows Terminal não tem barra de status, mas o **tmux** tem uma de verdade, embaixo, dentro do terminal Linux:
+
+```
+ main  ubuntu22@adrianosantospro   1:bash                          cpu 0% ram 4% disco 3% load 0.00  24/10 02:11
+```
+
+- Esquerda: sessão, `usuario@host` e as janelas. Direita: CPU, RAM e disco (verde/amarelo/vermelho), load e hora. Paleta Night Owl.
+- Compatível com tmux 3.1 a 3.4 (Debian 11, Ubuntu 22 e 24).
+
+**Instalar:**
+
+```bash
+mkdir -p ~/scripts
+cp ~/script-oh-my-posh/scripts/tmux-status.sh ~/scripts/ && chmod +x ~/scripts/tmux-status.sh
+cp ~/script-oh-my-posh/tmux/tmux.conf ~/.tmux.conf
+# se o tmux nao estiver instalado:  sudo apt install tmux
+```
+
+**Usar:** `tmux` abre uma sessão; `tmux new -A -s main` abre ou reata a sessão "main" (útil na VPS: a sessão sobrevive se a conexão cair); `Ctrl+b d` desanexa.
+
+| Atalho (prefixo `Ctrl+b`) | Ação |
+|---|---|
+| `\|` / `-` | divide ao lado / embaixo (na mesma pasta) |
+| `c` | nova janela |
+| `1`..`9` | vai para a janela |
+| `r` | recarrega o `~/.tmux.conf` |
+
+O mouse fica ligado: no Windows Terminal, para **selecionar e copiar texto**, segure `Shift` ao arrastar.
 
 ---
 
