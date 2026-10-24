@@ -111,7 +111,7 @@ env -u TERM_PROGRAM WT_SESSION=x bash -i   # completo
 
 ## 📋 Banner de entrada (`scripts/info.sh`)
 
-Resumo do ambiente que aparece ao abrir o terminal (WSL ou VPS): usuário@máquina, data, uptime, sistema, kernel, disco, RAM, CPU e tráfego da interface principal, com barras coloridas e tudo alinhado.
+Resumo do ambiente que aparece ao abrir o terminal (WSL, VPS ou Windows/Git Bash): usuário@máquina, data, uptime, sistema, disco, RAM, CPU e tráfego, com barras coloridas e tudo alinhado.
 
 ```
 WSL - Adriano Santos Treinamentos
@@ -136,6 +136,32 @@ mkdir -p ~/scripts
 cp ~/script-oh-my-posh/scripts/info.sh ~/scripts/info.sh
 chmod +x ~/scripts/info.sh
 echo '[ -x "$HOME/scripts/info.sh" ] && "$HOME/scripts/info.sh"' >> ~/.profile
+```
+
+**No Windows (Git Bash)** o mesmo script reconhece o ambiente e mostra: discos C: e D: (com aviso ⚠ acima de 90%), RAM, CPU, GPU NVIDIA (se houver), rede (todas as interfaces) e versões de bash, git, node e python.
+
+```
+Windows - Adriano Santos Treinamentos
+────────────────────────────────────────────────────────
+Disco C:      █████████░ 93%  1.7T de 1.9T, 136G livres  ⚠
+Disco D:      ███████░░░ 67%  617G de 932G, 315G livres
+RAM           ████████░░ 81%  26G de 32G, 6.1G livres
+CPU           ██░░░░░░░░ 16%  (média de 1s)
+GPU           ████░░░░░░ 41%  33°C  RTX 3050, 2.4G de 8.0G de VRAM
+Rede          todas   ↓ 735.1 kB/s   ↑ 120.5 kB/s
+Ferramentas   bash 5.2.37  ·  git 2.51.1  ·  node 24.18.0  ·  python 3.14.3
+```
+
+- **Windows Terminal:** banner completo. **VS Code, Orca e JetBrains:** só uma linha (`Windows  RAM 6.0G livres de 32G  ·  C: 93%  ·  D: 67%`), para não quebrar em janelas pequenas.
+- Roda direto do repositório (um `git pull` atualiza) e uma vez por terminal. Adicione ao fim do `~/.bashrc`:
+
+```bash
+_info_sh="$HOME/script-oh-my-posh/scripts/info.sh"
+if [ -z "$INFO_BANNER_FEITO" ] && [ -x "$_info_sh" ]; then
+  export INFO_BANNER_FEITO=1
+  "$_info_sh"
+fi
+unset _info_sh
 ```
 
 ---
