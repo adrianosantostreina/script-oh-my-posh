@@ -138,7 +138,7 @@ if [ "$WINDOWS" = 1 ]; then
   linha "Data"      "$(date '+%d/%m/%Y  %H:%M:%S') (UTC${fuso:0:3}:${fuso:3:2})"
   linha "Uptime"    "$(duracao "$(cut -d' ' -f1 /proc/uptime)")"
   linha "Sistema"   "Windows $versao (build $build)"
-  linha "Diretório" "$PWD"
+  linha "Diretório" "$(cygpath -w "$PWD" 2>/dev/null || echo "$PWD")"
   echo
 
   while read -r d p total usado livre; do

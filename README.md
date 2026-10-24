@@ -164,6 +164,27 @@ fi
 unset _info_sh
 ```
 
+**PowerShell e CMD** usam o **mesmo** `info.sh`, chamado pelo `bash.exe` do Git (um arquivo só para manter, banner idêntico).
+
+PowerShell: adicionar ao fim do `$PROFILE` (`notepad $PROFILE`):
+
+```powershell
+$InfoBash = 'C:\Program Files\Git\bin\bash.exe'
+$InfoScript = "$HOME\script-oh-my-posh\scripts\info.sh"
+if ((Test-Path $InfoBash) -and (Test-Path $InfoScript) -and ($Host.Name -eq 'ConsoleHost') -and (-not [Console]::IsOutputRedirected)) {
+    & $InfoBash $InfoScript
+}
+```
+
+CMD: o CMD não tem profile. Para o banner aparecer só no perfil do Windows Terminal, troque a `commandline` do perfil "Prompt de comando" no `settings.json` do Windows Terminal (não use `AutoRun` do registro: ele roda em todo `cmd /c` e quebra scripts):
+
+```json
+"commandline": "%SystemRoot%\\System32\\cmd.exe /k \"\"C:\\Program Files\\Git\\bin\\bash.exe\" \"C:\\caminho\\script-oh-my-posh\\scripts\\info.sh\" 2>nul\""
+```
+
+- Se o Git ou o repositório não estiverem no caminho, nada é mostrado (o CMD abre normalmente).
+- Fora de um console real (saída redirecionada, ferramentas, `powershell -Command`), o PowerShell fica em silêncio.
+
 ---
 
 ## 🔤 Instalação Geral — Fontes Nerd
