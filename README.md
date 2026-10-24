@@ -109,6 +109,37 @@ env -u TERM_PROGRAM WT_SESSION=x bash -i   # completo
 
 ---
 
+## 📋 Banner de entrada (`scripts/info.sh`)
+
+Resumo do ambiente que aparece ao abrir o terminal (WSL ou VPS): usuário@máquina, data, uptime, sistema, kernel, disco, RAM, CPU e tráfego da interface principal, com barras coloridas e tudo alinhado.
+
+```
+WSL - Adriano Santos Treinamentos
+────────────────────────────────────────────────────────
+Usuário       ubuntu22@adrianosantospro
+Data          24/10/2026  01:27:50 (-03)
+Disco (/)     ░░░░░░░░░░ 3%  22G de 1007G, 935G livres
+RAM           ░░░░░░░░░░ 4%  740M de 15G, 14G disponíveis
+CPU           ░░░░░░░░░░ 0%  (média de 2s)
+Rede          eth0    ↓    212 B/s   ↑      0 B/s
+```
+
+- Título mostra **WSL** ou **VPS** automaticamente.
+- Só usa `/proc`, `df`, `free`, `uptime` e `awk` (não precisa do `sysstat`/`sar`).
+- Fica em **silêncio** fora de terminal interativo (`bash -lc`, tarefas do VS Code, `ssh host comando`). Para forçar: `info.sh -f`.
+- Leva ~2 s, que é a janela de medição de CPU e rede.
+
+**Instalar** (Ubuntu/WSL ou VPS):
+
+```bash
+mkdir -p ~/scripts
+cp ~/script-oh-my-posh/scripts/info.sh ~/scripts/info.sh
+chmod +x ~/scripts/info.sh
+echo '[ -x "$HOME/scripts/info.sh" ] && "$HOME/scripts/info.sh"' >> ~/.profile
+```
+
+---
+
 ## 🔤 Instalação Geral — Fontes Nerd
 
 Para todos os terminais é necessário instalar uma **Nerd Font**.
