@@ -27,6 +27,32 @@
         {
             "command": "find",
             "id": "User.find"
+        },
+        {
+            "command":
+            {
+                "action": "multipleActions",
+                "actions":
+                [
+                    {
+                        "action": "newTab",
+                        "profile": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}"
+                    },
+                    {
+                        "action": "splitPane",
+                        "profile": "{693b8c97-4e33-40ed-84a1-c5bb40fd85eb}",
+                        "size": 0.3,
+                        "split": "right"
+                    },
+                    {
+                        "action": "moveFocus",
+                        "direction": "left"
+                    }
+                ]
+            },
+            "icon": "📊",
+            "id": "User.gitBashComPainel",
+            "name": "Git Bash + Painel"
         }
     ],
     "copyFormatting": "none",
@@ -53,6 +79,10 @@
         {
             "id": "User.splitPane.A6751878",
             "keys": "alt+shift+d"
+        },
+        {
+            "id": "User.gitBashComPainel",
+            "keys": "ctrl+alt+g"
         }
     ],
     "language": "pt-BR",
@@ -61,6 +91,10 @@
         {
             "profile": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
             "type": "profile"
+        },
+        {
+            "id": "User.gitBashComPainel",
+            "type": "action"
         },
         {
             "profile": "{51855cb2-8cce-5362-8f54-464b92b32386}",
@@ -199,6 +233,20 @@
                 "name": "VPS Hostinger",
                 "suppressApplicationTitle": true,
                 "tabTitle": "VPS"
+            },
+            {
+                "colorScheme": "CMD",
+                "commandline": "\"C:\\Program Files\\Git\\bin\\bash.exe\" \"D:\\6. Meus Projetos Pessoais\\script-oh-my-posh\\scripts\\painel.sh\"",
+                "font":
+                {
+                    "face": "3270 Nerd Font Mono",
+                    "size": 13
+                },
+                "guid": "{693b8c97-4e33-40ed-84a1-c5bb40fd85eb}",
+                "hidden": true,
+                "name": "Painel Git Bash",
+                "scrollbarState": "hidden",
+                "tabTitle": "Painel"
             }
         ]
     },
