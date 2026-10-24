@@ -237,7 +237,7 @@ Host vps
     ServerAliveCountMax 4
 ```
 
-**Painel lateral para o Git Bash** (`scripts/painel.sh`): o Windows Terminal não tem barra de status nem painel fixo, então a ação **Git Bash + Painel** abre uma aba do Git Bash com um painel estreito à direita (30% da largura) que se atualiza sozinho a cada ~3 s: discos (⚠ acima de 90%), RAM, CPU, GPU NVIDIA, rede e os 5 processos que mais usam memória.
+**Painel lateral para o Git Bash** (`scripts/painel.sh`): o Windows Terminal não tem barra de status nem painel fixo, então a ação **Git Bash + Painel** abre uma aba do Git Bash com um painel estreito à direita (18% da largura) que se atualiza sozinho a cada ~3 s: discos (⚠ acima de 90%), RAM, CPU, GPU NVIDIA, rede e os 5 processos que mais usam memória.
 
 ```
 Painel · Windows   01:57:22
@@ -256,7 +256,7 @@ Mais memória
 
 - **Abrir:** `Ctrl+Alt+G`, ou menu da seta para baixo → "Git Bash + Painel". Um Git Bash normal continua abrindo sem painel.
 - **Como é feito** (já está no `windows-terminal/settings.json`): um perfil escondido "Painel Git Bash" que roda o `painel.sh`, uma ação `User.gitBashComPainel` (`multipleActions`: `newTab` → `splitPane` à direita com `size` 0.3 → `moveFocus` à esquerda), o atalho e a entrada no menu.
-- **Largura do painel:** mude o `size` da ação (0.3 = 30%). **Atualização:** mude `JANELA` no `painel.sh`.
+- **Largura do painel:** mude o `size` da ação (0.18 = 18%). O desenho usa 34 colunas; em janelas pequenas aumente o valor para o texto não ser cortado. **Atualização:** mude `JANELA` no `painel.sh`.
 - Testar sem abrir o Windows Terminal: `scripts/painel.sh -1` (desenha uma vez e sai).
 
 ---
