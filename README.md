@@ -32,6 +32,8 @@ Dois temas próprios em `themes/`, só com letras coloridas (sem blocos de fundo
 
 Nos dois, o `❯` da segunda linha fica verde e vira **vermelho** quando o último comando falha.
 
+Em **sessão SSH** o tema compacto passa a mostrar o host em amarelo (`root@asa\..\pasta\ main`), para você não rodar um comando na máquina errada. No PC local ele continua só com o usuário (`adriano\..\pasta\ main`).
+
 ### 🧠 Escolha automática do tema
 
 O mesmo bloco de configuração escolhe o tema conforme o programa onde o terminal abriu:
@@ -80,6 +82,8 @@ source ~/.bashrc     # PowerShell: . $PROFILE
 ```
 
 > Se a pasta de temas não for encontrada, o shell sobe com o tema padrão do Oh My Posh em vez de ficar sem prompt.
+
+**Servidores (VPS via SSH)** — pelo SSH as variáveis do terminal local (`WT_SESSION`, `TERM_PROGRAM`) não chegam ao servidor, então a escolha do tema é pela **largura do terminal**: 130 colunas ou mais usa o completo, menos que isso usa o compacto. Use [`snippets/oh-my-posh-servidor.sh`](snippets/oh-my-posh-servidor.sh) no fim do `~/.bashrc` do servidor (já traz a guarda para shell não interativo, para não atrapalhar `ssh host comando`). Para mudar o limite, edite `_posh_largura_min`. Atualizar os temas no servidor: `git -C ~/script-oh-my-posh pull`.
 
 ### 3️⃣ Testar e ajustar
 

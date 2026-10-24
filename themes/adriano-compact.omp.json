@@ -21,7 +21,7 @@
           "type": "text",
           "style": "plain",
           "foreground": "p:user",
-          "template": "{{ .UserName }}"
+          "template": "{{ .UserName }}{{ if .Env.SSH_CONNECTION }}<p:sep>@</><p:dirty>{{ .HostName }}</>{{ end }}"
         },
         {
           "type": "text",
