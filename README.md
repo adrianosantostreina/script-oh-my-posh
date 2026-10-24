@@ -21,6 +21,94 @@ https://ohmyposh.dev/docs/themes
 
 ---
 
+## 🎯 Meu Tema (`adriano`) — como usar o tema deste repositório
+
+Dois temas próprios em `themes/`, só com letras coloridas (sem blocos de fundo) e a paleta do `night-owl`:
+
+| Tema | Arquivo | Como fica |
+|------|---------|-----------|
+| **Completo** | `themes/adriano.omp.json` | `usuario@host  D:\caminho\completo  branch status` e, à direita, tempo do último comando, shell e hora |
+| **Compacto** | `themes/adriano-compact.omp.json` | `usuario\..\pasta_atual\ branch *` (o `*` aparece se há alterações) |
+
+Nos dois, o `❯` da segunda linha fica verde e vira **vermelho** quando o último comando falha.
+
+### 🧠 Escolha automática do tema
+
+O mesmo bloco de configuração escolhe o tema conforme o programa onde o terminal abriu:
+
+| Onde o terminal abriu | Como detecta | Tema |
+|-----------------------|--------------|------|
+| Windows Terminal (inclusive WSL dentro dele) | `WT_SESSION` definido | **completo** |
+| VS Code (e derivados: Cursor, Trae...) | `TERM_PROGRAM=vscode` | **compacto** |
+| Orca IDE | `TERM_PROGRAM=Orca` | **compacto** |
+| JetBrains (PyCharm, etc.) | `TERMINAL_EMULATOR` definido | **compacto** |
+| Qualquer outro | nenhuma das anteriores | **compacto** |
+
+### 1️⃣ Clonar o repositório
+
+```bash
+git clone https://github.com/adrianosantostreina/script-oh-my-posh.git ~/script-oh-my-posh
+```
+
+### 2️⃣ Ativar no shell
+
+**PowerShell** — abrir o perfil e colar o conteúdo de [`snippets/oh-my-posh.ps1`](snippets/oh-my-posh.ps1):
+
+```powershell
+notepad $PROFILE
+```
+
+**Git Bash, WSL (bash) e zsh** — editar o arquivo do shell e colar o conteúdo de [`snippets/oh-my-posh.sh`](snippets/oh-my-posh.sh):
+
+```bash
+nano ~/.bashrc      # no zsh: nano ~/.zshrc
+```
+
+Ajuste só as variáveis do topo do bloco:
+
+| Variável | O que é | Exemplo |
+|----------|---------|---------|
+| `_posh_shell` | shell | `bash` ou `zsh` |
+| `_posh_bin` | executável do Oh My Posh | `oh-my-posh` (no Git Bash: `/c/Users/SEU_USUARIO/AppData/Local/Programs/oh-my-posh/bin/oh-my-posh.exe`) |
+| `_posh_temas` | pasta `themes` deste repositório | `$HOME/script-oh-my-posh/themes` (WSL usando o clone do Windows: `/mnt/d/.../script-oh-my-posh/themes`) |
+| `_posh_completo` / `_posh_compacto` | nomes dos temas | `adriano` / `adriano-compact` |
+
+Aplicar sem fechar o terminal:
+
+```bash
+source ~/.bashrc     # PowerShell: . $PROFILE
+```
+
+> Se a pasta de temas não for encontrada, o shell sobe com o tema padrão do Oh My Posh em vez de ficar sem prompt.
+
+### 3️⃣ Testar e ajustar
+
+Experimentar um tema só na sessão atual (fechar o terminal desfaz):
+
+```bash
+eval "$(oh-my-posh init bash --config ~/script-oh-my-posh/themes/adriano-compact.omp.json)"
+```
+
+```powershell
+oh-my-posh init pwsh --config "$HOME\script-oh-my-posh\themes\adriano-compact.omp.json" | Invoke-Expression
+```
+
+Simular o prompt de outro ambiente (sem abrir o programa):
+
+```bash
+TERM_PROGRAM=vscode bash -i        # compacto
+env -u TERM_PROGRAM WT_SESSION=x bash -i   # completo
+```
+
+**Trocar cores:** as cores ficam no bloco `palette` no topo de cada `.omp.json` (`user`, `sep`, `folder`, `branch`, `dirty`, `ok`, `err`). Basta editar o hexadecimal; vale para todos os segmentos.
+
+### ⚠️ Requisitos
+
+- **Nerd Font** no terminal. No VS Code, defina `terminal.integrated.fontFamily` com a mesma fonte (ex.: `3270 Nerd Font`), senão os ícones viram quadradinhos.
+- Oh My Posh 25 ou superior (testado com 25.3, 26.8 e 26.25).
+
+---
+
 ## 🔤 Instalação Geral — Fontes Nerd
 
 Para todos os terminais é necessário instalar uma **Nerd Font**.
