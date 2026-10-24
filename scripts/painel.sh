@@ -1,7 +1,9 @@
 #!/bin/bash
 # Painel lateral ao vivo (Windows / Git Bash): discos, RAM, CPU, GPU, rede e processos que mais usam memoria.
-# Feito para rodar num painel estreito do Windows Terminal (veja a acao "Git Bash + Painel" no README).
-# Redesenha no lugar, sem piscar. Ctrl+C sai. Use -1 para desenhar uma vez e sair (teste).
+# Feito para rodar num painel estreito do Windows Terminal (veja as acoes "Git Bash + Painel" no README).
+# Redesenha no lugar, sem piscar, e SE ADAPTA A LARGURA do painel (le a largura a cada ciclo,
+# entao acompanha o redimensionamento da janela). Ctrl+C sai. Use -1 para desenhar uma vez e sair (teste);
+# PAINEL_LARGURA=NN forca a largura (teste).
 [ "$1" = "-1" ] && UMA_VEZ=1
 [ -t 1 ] || [ -n "$UMA_VEZ" ] || exit 0
 
@@ -11,8 +13,6 @@ case "$(uname -s)" in
 esac
 
 JANELA=2            # segundos entre atualizacoes (tambem a janela de medicao de CPU e rede)
-LARGURA_BARRA=10
-LARGURA=34          # largura do desenho (separadores)
 
 if [ -t 1 ] && [ -z "$NO_COLOR" ]; then
   R=$'\e[0m'; TITULO=$'\e[1;38;2;33;199;168m'; ROTULO=$'\e[38;2;99;119;119m'
@@ -21,6 +21,24 @@ if [ -t 1 ] && [ -z "$NO_COLOR" ]; then
 else
   R=; TITULO=; ROTULO=; OK=; AVISO=; ERRO=; SETA=; TXT=
 fi
+
+# Calcula o layout conforme a largura atual do painel: barras, separadores e nomes crescem ou encolhem.
+calc_layout() {
+  local w n k
+  w=${PAINEL_LARGURA:-$(tput cols 2>/dev/null)}
+  case "$w" in '' | *[!0-9]*) w=34 ;; esac
+  [ "$w" -lt 20 ] && w=20
+  inner=$((w - 1))                                       # nunca escreve na ultima coluna (evita quebra de linha)
+  LARGURA_BARRA=$(( (inner * 3 + 5) / 10 ))              # 33 colunas -> barra de 10
+  [ "$LARGURA_BARRA" -lt 6 ] && LARGURA_BARRA=6
+  [ "$LARGURA_BARRA" -gt 24 ] && LARGURA_BARRA=24
+  nome_w=$((inner - 9))
+  [ "$nome_w" -gt 28 ] && nome_w=28
+  [ "$nome_w" -lt 8 ] && nome_w=8
+  if [ "$inner" -lt 27 ]; then ESTREITO=1; else ESTREITO=0; fi
+  n=$inner; [ "$n" -gt 60 ] && n=60
+  sep=""; for ((k = 0; k < n; k++)); do sep+="─"; done
+}
 
 barra() {   # PERCENTUAL -> [██████░░░░] verde < 60, amarelo < 85, vermelho >= 85
   local p=$1 cheio i cor c='' v=''
@@ -76,29 +94,32 @@ topmem() {  # 5 processos que mais usam memoria, somando todas as instancias do 
 F=""
 lin()  { F+="$1"$'\e[K\n'; }                          # linha do quadro (limpa o resto da linha)
 sec()  { lin "${ROTULO}$1${R}"; }                      # titulo de secao
-sep=""; for ((i = 0; i < LARGURA; i++)); do sep+="─"; done
 
 desenhar() {
   F=""
-  lin "${TITULO}Painel · Windows${R}   ${ROTULO}$(date '+%H:%M:%S')${R}"
+  if [ "$ESTREITO" = 1 ]; then
+    lin "${TITULO}Painel${R}  ${ROTULO}$(date '+%H:%M:%S')${R}"
+  else
+    lin "${TITULO}Painel · Windows${R}   ${ROTULO}$(date '+%H:%M:%S')${R}"
+  fi
   lin "${ROTULO}${sep}${R}"
 
   sec "Disco"
   while read -r d p total usado livre; do
     aviso=""; [ "$p" -ge 90 ] && aviso=" ${ERRO}⚠${R}"
     lin " ${TXT}${d}${R} $(barra "$p") ${p}%${aviso}"
-    lin "    ${ROTULO}${livre} livres de ${total}${R}"
+    if [ "$ESTREITO" = 1 ]; then lin "    ${ROTULO}${livre} livres${R}"; else lin "    ${ROTULO}${livre} livres de ${total}${R}"; fi
   done <<< "$(listar_discos)"
 
   sec "Memória"
   lin " ${TXT}RAM${R} $(barra "$m_pct") ${m_pct}%"
-  lin "     ${ROTULO}$(gib "$m_livre") livres de $(gib "$m_total")${R}"
+  if [ "$ESTREITO" = 1 ]; then lin "     ${ROTULO}$(gib "$m_livre") livres${R}"; else lin "     ${ROTULO}$(gib "$m_livre") livres de $(gib "$m_total")${R}"; fi
 
   sec "Processamento"
   lin " ${TXT}CPU${R} $(barra "$cpu_pct") ${cpu_pct}%"
   if [ -n "$g_uso" ]; then
     lin " ${TXT}GPU${R} $(barra "$g_uso") ${g_uso}%  ${ROTULO}${g_temp}°C${R}"
-    lin "     ${ROTULO}$(gib $((g_mem * 1024))) de $(gib $((g_memt * 1024))) VRAM${R}"
+    if [ "$ESTREITO" = 1 ]; then lin "     ${ROTULO}$(gib $((g_mem * 1024)))/$(gib $((g_memt * 1024)))${R}"; else lin "     ${ROTULO}$(gib $((g_mem * 1024))) de $(gib $((g_memt * 1024))) VRAM${R}"; fi
   fi
 
   sec "Rede"
@@ -112,8 +133,8 @@ desenhar() {
   sec "Mais memória"
   while read -r mb nome; do
     [ -z "$nome" ] && continue
-    nome=${nome:0:20}
-    lin "$(printf ' %s%-20s%s %6s' "$TXT" "$nome" "$R" "$(gib $((mb * 1024)))")"
+    nome=${nome:0:$nome_w}
+    lin "$(printf ' %s%-*s%s %6s' "$TXT" "$nome_w" "$nome" "$R" "$(gib $((mb * 1024)))")"
   done <<< "$(topmem)"
 
   lin "${ROTULO}${sep}${R}"
@@ -147,6 +168,7 @@ while true; do
     g_uso=${g_uso// /}; g_temp=${g_temp// /}; g_mem=${g_mem// /}; g_memt=${g_memt// /}
   fi
 
+  calc_layout                                            # le a largura atual (acompanha o redimensionamento)
   desenhar
   if [ -n "$UMA_VEZ" ]; then printf '%s' "$F"; exit 0; fi
   printf '\e[H%s\e[J' "$F"                               # cursor no topo, desenha o quadro e limpa o que sobrou

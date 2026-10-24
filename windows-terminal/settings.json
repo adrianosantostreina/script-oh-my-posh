@@ -41,7 +41,7 @@
                     {
                         "action": "splitPane",
                         "profile": "{693b8c97-4e33-40ed-84a1-c5bb40fd85eb}",
-                        "size": 0.15,
+                        "size": 0.2,
                         "split": "right"
                     },
                     {
@@ -53,6 +53,32 @@
             "icon": "📊",
             "id": "User.gitBashComPainel",
             "name": "Git Bash + Painel"
+        },
+        {
+            "command":
+            {
+                "action": "multipleActions",
+                "actions":
+                [
+                    {
+                        "action": "newTab",
+                        "profile": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}"
+                    },
+                    {
+                        "action": "splitPane",
+                        "profile": "{693b8c97-4e33-40ed-84a1-c5bb40fd85eb}",
+                        "size": 0.11,
+                        "split": "right"
+                    },
+                    {
+                        "action": "moveFocus",
+                        "direction": "left"
+                    }
+                ]
+            },
+            "icon": "📊",
+            "id": "User.gitBashComPainelCheia",
+            "name": "Git Bash + Painel (tela cheia)"
         }
     ],
     "copyFormatting": "none",
@@ -83,6 +109,10 @@
         {
             "id": "User.gitBashComPainel",
             "keys": "ctrl+alt+g"
+        },
+        {
+            "id": "User.gitBashComPainelCheia",
+            "keys": "ctrl+alt+shift+g"
         }
     ],
     "language": "pt-BR",
@@ -94,6 +124,10 @@
         },
         {
             "id": "User.gitBashComPainel",
+            "type": "action"
+        },
+        {
+            "id": "User.gitBashComPainelCheia",
             "type": "action"
         },
         {

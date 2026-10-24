@@ -237,7 +237,7 @@ Host vps
     ServerAliveCountMax 4
 ```
 
-**Painel lateral para o Git Bash** (`scripts/painel.sh`): o Windows Terminal não tem barra de status nem painel fixo, então a ação **Git Bash + Painel** abre uma aba do Git Bash com um painel estreito à direita (15% da largura) que se atualiza sozinho a cada ~3 s: discos (⚠ acima de 90%), RAM, CPU, GPU NVIDIA, rede e os 5 processos que mais usam memória.
+**Painel lateral para o Git Bash** (`scripts/painel.sh`): o Windows Terminal não tem barra de status nem painel fixo, então a ação **Git Bash + Painel** abre uma aba do Git Bash com um painel estreito à direita que se atualiza sozinho a cada ~3 s: discos (⚠ acima de 90%), RAM, CPU, GPU NVIDIA, rede e os 5 processos que mais usam memória.
 
 ```
 Painel · Windows   01:57:22
@@ -254,9 +254,10 @@ Mais memória
  claude.exe             5.1G
 ```
 
-- **Abrir:** `Ctrl+Alt+G`, ou menu da seta para baixo → "Git Bash + Painel". Um Git Bash normal continua abrindo sem painel.
+- **Abrir:** `Ctrl+Alt+G` (janela normal, painel de 20%) ou `Ctrl+Alt+Shift+G` (tela cheia, painel de 11%); também no menu da seta para baixo. Um Git Bash normal continua abrindo sem painel.
+- **Por que duas ações:** o Windows Terminal só aceita largura de painel em **porcentagem**, não em colunas, então não dá para fixar a largura quando a janela é expandida. Por isso há uma ação para cada tamanho de janela. O próprio `painel.sh` **se adapta à largura que tiver**: lê o tamanho a cada ciclo, escala as barras e encurta os textos (de ~20 a 60+ colunas), e acompanha o redimensionamento da janela.
 - **Como é feito** (já está no `windows-terminal/settings.json`): um perfil escondido "Painel Git Bash" que roda o `painel.sh`, uma ação `User.gitBashComPainel` (`multipleActions`: `newTab` → `splitPane` à direita com `size` 0.3 → `moveFocus` à esquerda), o atalho e a entrada no menu.
-- **Largura do painel:** mude o `size` da ação (0.15 = 15%). O desenho usa 34 colunas; em janelas pequenas aumente o valor para o texto não ser cortado. **Atualização:** mude `JANELA` no `painel.sh`.
+- **Largura do painel:** mude o `size` da ação (`User.gitBashComPainel` = 0.2, `User.gitBashComPainelCheia` = 0.11). O ideal é o painel ter ~34 colunas; abaixo de ~27 os textos ficam abreviados. **Atualização:** mude `JANELA` no `painel.sh`.
 - Testar sem abrir o Windows Terminal: `scripts/painel.sh -1` (desenha uma vez e sai).
 
 ---
@@ -278,8 +279,10 @@ O Windows Terminal não tem barra de status, mas o **tmux** tem uma de verdade, 
 mkdir -p ~/scripts
 cp ~/script-oh-my-posh/scripts/tmux-status.sh ~/scripts/ && chmod +x ~/scripts/tmux-status.sh
 cp ~/script-oh-my-posh/tmux/tmux.conf ~/.tmux.conf
-# se o tmux nao estiver instalado:  sudo apt install tmux
+# se o tmux nao estiver instalado:  sudo apt install tmux      (na VPS, como root: apt-get install -y --no-install-recommends tmux)
 ```
+
+Testado em tmux 3.1c (Debian 11, VPS), 3.2a (Ubuntu 22) e 3.4 (Ubuntu 24).
 
 **Usar:** `tmux` abre uma sessão; `tmux new -A -s main` abre ou reata a sessão "main" (útil na VPS: a sessão sobrevive se a conexão cair); `Ctrl+b d` desanexa.
 
